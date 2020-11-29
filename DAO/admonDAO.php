@@ -1,14 +1,14 @@
 <?php
 
 require_once("../config.php");
-class especialidadDAO extends config{
+class admonDAO extends config{
     private $admons;
     public function __construct(){
         $this->admons=array();
     }
 
     public function readall(){  //read
-        $sql="select * from especialidad";
+        $sql="select * from administrador";
         $link=$this->con(); 
         $resul=mysqli_query($link,$sql);
         while($row=$resul->fetch_assoc()){
@@ -16,18 +16,9 @@ class especialidadDAO extends config{
         }
         return json_encode( $this->admons);
     }
-    public function readallArray(){  //read
-        $sql="select * from especialidad";
-        $link=$this->con(); 
-        $resul=mysqli_query($link,$sql);
-        while($row=$resul->fetch_assoc()){
-            $this->admons[]=$row;
-        }
-        return $this->admons;
-    }
     public function readOneById($id){
        
-     $sql="select * from especialidad where idespecialidad=$id";
+     $sql="select * from administrador where idadministrador=$id";
      $link=$this->con();       
      $resul=mysqli_query($link,$sql);
 
@@ -41,22 +32,17 @@ class especialidadDAO extends config{
             return "marica";
             
     }
-    public function getID($name){
-        $sql="select * from especialidad where nombre='$name'";
+    public function getMail($mail){
+        $sql="select * from administrador where correo='$mail'";
         $link=$this->con();       
-        $id=0;
         $resul=mysqli_query($link,$sql);
-        if($link->affected_rows == 1){
-            while($row=$resul->fetch_assoc()){
-                $id=$row['idespecialidad'];
-            }  
-        }
-        return $id;
+        $tam=$resul->num_rows;
+        return $tam;
     }
 
-    public function insert($name){ //create
-        $sql="insert into especialidad(nombre)values
-        ('$name')";
+    public function insert($name,$lastname,$mail,$pass,$ask,$ans){ //create
+        $sql="insert into administrador(nombre,apellido,correo,clave,pregunta,respuesta)values
+        ('$name','$lastname','$mail','$pass','$ask','$ans')";
         $resul=mysqli_query($this->con(),$sql);
         if($resul){
             return true;
@@ -65,7 +51,7 @@ class especialidadDAO extends config{
         }
     }
     public function delete($id){ //delete
-        $sql="delete from especialidad where idespecialidad=$id";
+        $sql="delete from administrador where idadministrador=$id";
         $resul=mysqli_query($this->con(),$sql);
         if($resul){
             return true;
@@ -74,9 +60,9 @@ class especialidadDAO extends config{
         }
     }
     
-    public function updateName($id,$pass){//update
-        $sql="update especialidad set nombre='$pass'
-        where idespecialidad=$id";
+    public function updatePass($id,$pass){//update
+        $sql="update administrador set clave='$pass'
+        where idadministrador='$id'";
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     }

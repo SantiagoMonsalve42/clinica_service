@@ -1,0 +1,70 @@
+////////////////////////////////////////// DATOS PARA CONSUMIR WEB SERVICES /////////////////////////////////////
+
+//////////////////// ADMIN ////////////////////////
+
+1) PARA INSERT 
+
+POST METHOD
+URL=http://localhost/clinica_web/admin/create.php
+ VARIABLES A ENVIAR:
+name
+last_name
+mail
+pass
+ask
+answer
+
+2) PARA READ ONE
+GET METHOD
+
+URL=http://localhost/clinica_web/admin/read.php
+VARIABLES A ENVIAR:
+ id
+
+
+3) PARA READ ALL
+GET METHOD
+
+URL=http://localhost/clinica_web/admin/readAll.php
+VARIABLES A ENVIAR:
+readall (no importa lo que quiera enviar, lo q importa es que no sea nulo)
+
+
+4) PARA UPDATE PASS 
+POST METHOD
+URL=http://localhost/clinica_web/admin/updatepass.php
+VARIABLES A ENVIAR:
+id
+pass
+
+///////////////ESPECIALIDAD//////////////////
+
+1) PARA INSERT (VERIFICA QUE NO SE CREE UNA MISMA ESPECIALIDAD DOS VECES)
+
+POST METHOD
+URL=http://localhost/clinica_web/especialidad/create.php
+ VARIABLES A ENVIAR:
+name
+
+2) PARA READ ONE
+GET METHOD
+
+URL=http://localhost/clinica_web/especialidad/read.php
+VARIABLES A ENVIAR:
+ id
+
+3) PARA READ ALL
+GET METHOD
+
+URL=http://localhost/clinica_web/especialidad/readAll.php
+VARIABLES A ENVIAR:
+readall (no importa lo que quiera enviar, lo q importa es que no sea nulo)
+
+4) PARA UPDATE NAME
+POST METHOD
+URL=http://localhost/clinica_web/especialidad/update.php
+VARIABLES A ENVIAR:
+id
+name
+
+
