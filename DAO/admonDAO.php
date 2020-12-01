@@ -29,11 +29,18 @@ class admonDAO extends config{
                 return json_encode($array);
             }
             else
-            return "marica";
+            return "No hay ID's aun";
             
     }
     public function getMail($mail){
         $sql="select * from administrador where correo='$mail'";
+        $link=$this->con();       
+        $resul=mysqli_query($link,$sql);
+        $tam=$resul->num_rows;
+        return $tam;
+    }
+    public function getMailPswd($mail,$clave){
+    $sql="select correo,clave from administrador where correo='$mail' and clave='md5($clave)'";
         $link=$this->con();       
         $resul=mysqli_query($link,$sql);
         $tam=$resul->num_rows;
@@ -67,4 +74,5 @@ class admonDAO extends config{
        return $resul;
     }
 }
+
 ?>
