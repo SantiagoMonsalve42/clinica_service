@@ -2,7 +2,7 @@
   
 if(isset($_POST['id']) && isset($_POST['ask']) && isset($_POST['ans']) ){
     
-    require '../DAO/adminDAO.php';
+    require '../DAO/admonDAO.php';
 
     $id=$_POST['id'];
     $ask=$_POST['ask'];

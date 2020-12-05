@@ -18,7 +18,7 @@ class pacienteDAO extends config{
     }
     public function readOneById($id){
        
-     $sql="select * from paciente where idpaciente=$id";
+     $sql="select * from paciente where idpaciente='$id' or correo ='$id'";
      $link=$this->con();       
      $resul=mysqli_query($link,$sql);
 
@@ -29,7 +29,7 @@ class pacienteDAO extends config{
                 return json_encode($array);
             }
             else
-            return "Leyendo ID";
+            return null;
             
     }
     public function getMail($mail){
