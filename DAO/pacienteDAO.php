@@ -47,11 +47,11 @@ class pacienteDAO extends config{
         return $tam;
     }
 
-    public function insert($name,$lastname,$mail,$pass,$cc,$tel,$photo,$ask,$ans,$est){ //create
+    public function insert($name,$lastname,$mail,$pass,$cc,$tel,$ask,$ans,$date){ //create
 
         $est=1;
-        $sql="insert into paciente(nombre,apellido,correo,clave,cedula,telefono,foto,pregunta,respuesta)values
-        ('$name','$lastname','$mail','$pass','$cc','$tel',$photo,'$ask','$ans',$est)";
+        $sql="insert into paciente(nombre,apellido,correo,clave,cedula,telefono,pregunta,respuesta,fecha_nacimiento,estado)values
+        ('$name','$lastname','$mail',md5('$pass'),'$cc','$tel','$ask','$ans',$date,0)";
         $resul=mysqli_query($this->con(),$sql);
         if($resul){
             return true;
