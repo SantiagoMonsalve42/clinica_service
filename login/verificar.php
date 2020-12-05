@@ -35,17 +35,7 @@
 		    
 		}
 	}
-	/*function Inicio($estado){
-			if($_SESSION['id']!="" ){
-				if($_SESSION["rol"] == "Administrador"&& $estado==1){
-				}
-				else if($_SESSION["rol"] == "Paciente" && $estado==2){
-				}
-			}
-			else if($_SESSION['id']=="" && $estado==3){
-				echo "Sin inicio de sesion";
-			}
-		}*/
+	
 }
 
 ?>

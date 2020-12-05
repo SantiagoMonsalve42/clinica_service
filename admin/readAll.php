@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_GET['readall'])){
-    require '../DAO/adminDAO.php';
+    require '../DAO/admonDAO.php';
 
     $adminDAO = new admonDAO();
     $resul=$adminDAO->readall();

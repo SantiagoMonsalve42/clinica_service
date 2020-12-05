@@ -2,13 +2,13 @@
   
 if(isset($_POST['id']) && isset($_POST['pass']) ){
     
-    require '../DAO/admonDAO.php';
+    require '../DAO/pacienteDAO.php';
 
     $id=$_POST['id'];
     $pass=$_POST['pass'];
     $npass= md5($pass);
-    $adminDAO = new admonDAO();
-    $resul=$adminDAO->updatePass($id,$npass);
+    $obj = new pacienteDAO();
+    $resul=$obj->updatePass($id,$npass);
     echo $resul;
 } 
 

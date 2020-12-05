@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_GET['id'])){
-    require '../DAO/adminDAO.php';
+    require '../DAO/admonDAO.php';
 
     $id=$_GET['id'];
     $adminDAO = new admonDAO();
