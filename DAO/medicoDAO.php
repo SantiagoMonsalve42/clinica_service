@@ -29,7 +29,7 @@ class medicoDAO extends config{
                 return json_encode($array);
             }
             else
-            return "marica";
+            return "Falla";
             
     }
     public function getMail($mail){
@@ -66,5 +66,13 @@ class medicoDAO extends config{
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     }
+
+    public function update($id,$name,$lastname,$mail,$prof,$ask,$ans,$date){//update
+        $sql="update medico set nombre='$name', apellido='$lastname',correo='$mail',tarjetaprofesional='$prof',pregunta='$ask',respuesta='$ans',fecha_nacimiento='$date'
+        where idmedico='$idmedico'";
+        $resul=mysqli_query($this->con(),$sql);
+       return $resul;
+    } 
+
 }
 ?>

@@ -13,7 +13,7 @@ $cc=$_POST['cc'];
 $telefono=$_POST['telefono'];
 $pregunta=$_POST['pregunta'];
 $respuesta=$_POST['respuesta'];
-$fecha_nac=$_POST['fecha_nac'];
+$fecha_nac=$_POST['fecha_nacimiento'];
 
 $sql=$pacDAO->
 insert($nombre,$apellido,$correo,$clave,$cc,$telefono,$pregunta,$respuesta,$fecha_nac);
