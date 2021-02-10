@@ -1,12 +1,12 @@
 <?php
 include ('../config.php');
-include ('../DAO/citaDAO.php');
+include ('../DAO/consultorioDAO.php');
 $conf= new config();
 $link= $conf->con();
-$citaDAO= new citaDAO();
+$conDAO= new consultorioDAO();
 
 
-$sql=$citaDAO->
+$sql=$conDAO->
 readAll();
 
   if(mysqli_query($link, $sql)){

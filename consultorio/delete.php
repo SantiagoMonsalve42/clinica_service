@@ -1,15 +1,15 @@
 <?php
-if(isset($_POST['idmedico'])){
+if(isset($_POST['idconsultorio'])){
 	include ('../config.php');
-	include ('../DAO/medicoDAO.php');
+	include ('../DAO/consultiorioDAO.php');
 	$conf= new config();
 	$link= $conf->con();
-	$medDAO= new medicoDAO();
+	$conDAO= new consultorioDAO();
 
-	$id_medico=$_POST['idmedico'];
+	$id_consultorio=$_POST['idconsultorio'];
 
-	$sql=$medDAO->
-	delete($id_medico);
+	$sql=$conDAO->
+	delete($id_consultorio);
 	if($link->affected_rows>0){
        // echo "Insercion correcta";
 		echo("Eliminación correcta");
