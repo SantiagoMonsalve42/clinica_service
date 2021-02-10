@@ -26,6 +26,4 @@ insert($nombre,$apellido,$correo,$clave,$tarjeta,$pregunta,$respuesta,$fecha_nac
         mysqli_close($link);
     }
 
-
-
 ?>

@@ -6,7 +6,7 @@ if(isset($_POST['idpaciente'])){
 	$link= $conf->con();
 	$pacDAO= new pacienteDAO();
 
-	$id_paciente=$_POST['idpaciente']
+	$id_paciente=$_POST['idpaciente'];
 
 	$sql=$pacDAO->
 	delete($id_paciente);

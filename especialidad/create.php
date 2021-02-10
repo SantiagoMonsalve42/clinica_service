@@ -1,22 +1,23 @@
 <?php
+include ('../config.php');
+include ('../DAO/especialidadDAO.php');
+$conf= new config();
+$link= $conf->con();
+$espeDAO= new especialidadDAO();
+
+$nombre=$_POST['nombre'];
 
 
+$sql=$espeDAO->
+insert($nombre);
 
-if(isset($_POST['name'])){
+if(mysqli_query($link, $sql)){
+    // echo "Insercion correcta";
+    echo("Registro correcto");
+}
+else{
+    echo "Insercion incorrecta",mysqli_error($link);
+    mysqli_close($link);
+}
 
-    require_once '../DAO/facade.php';
-    require_once '../DAO/especialidadDAO.php';
-    
-
-    $name=$_POST['name'];
-
-     $espe = new especialidadDAO();
-     $facade = new facade();
-     if($facade->validarEspecialidad($name)){
-     $resul=$espe->insert($name);
-      echo $resul;
-     }else{
-         echo 0;
-     }
-} 
 ?>
