@@ -1,42 +1,27 @@
 
 <?php
-	require_once("../config.php");
-	require_once ("../DAO/admonDAO.php");
-	require_once ("../DAO/pacienteDAO.php");
-	class verificar{
-		private $admons;
-    	function __construct(){
-		$correo = $_POST["correo"];
-		$clave = $_POST["clave"];
-		$id=$_POST["id"];
-		$rol_param=$_POST["rol"];
-		$rol_sesion=$_SESSION["rol"];
+	require_once ("../DAO/facade.php");
+	if(isset($_POST["correo"]) && $_POST["clave"]){
+	 $objf = new facade();
+	 $array;
+	 $id= $objf->validarCredencial($_POST["correo"],$_POST["clave"]);
+		switch($id){
+			case 0:
+				$array = array('id' => 0, 'variable_sesion' => "null");
+				break;
+			case 1:
+				$array = array('id' => 1, 'variable_sesion' => $_POST["correo"]);
+				break;
+			case 2:
+				$array = array('id' => 2, 'variable_sesion' => $_POST["correo"]);
+				break;
+			case 3:
+				$array = array('id' => 3, 'variable_sesion' => $_POST["correo"]);
+				break;
+		}
+		echo json_encode($array);
 
-		$adminDAO = new admonDAO();
-		$admDAO=$adminDAO->getMailPswd($correo,$clave);
-
-		$paciDAO = new pacienteDAO();
-		$pacDAO=$paciDAO->getMailPswd($correo,$clave);
 	}
-		function valida($estado){
-			if($admDAO>0){
-				$_SESSION['id'] = $adminDAO->readOneById($id);
-		    	$rol_sesion = $rol_param;
-		    	$estado=1; 
-		}
-		else if($pacDAO){
-			
-			$_SESSION['id'] = $paciDAO->readOneById($id);
-		    $rol_sesion = $rol_param;
-		    $estado=2;
-		}
-		else{
-			$estado=3;
-		    
-		}
-	}
-	
-}
 
 ?>
    
