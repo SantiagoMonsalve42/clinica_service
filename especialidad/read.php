@@ -1,11 +1,11 @@
 <?php
 
-if(isset($_GET['id'])){
+if(isset($_POST['idespecialidad'])){
     require '../DAO/especialidadDAO.php';
 
-    $id=$_GET['id'];
-    $espe = new especialidadDAO();
-    $resul=$espe->readOneById($id);
+    $id_especialidad=$_GET['idespecialidad'];
+    $obj = new especialidadDAO();
+    $resul=$obj->readOneById($id_especialidad);
     echo $resul;
 } 
 

@@ -1,7 +1,10 @@
 <?php
 
-if(isset($_POST['idconsultorio'])){
-	require '../DAO/consultorioDAO.php';
+if(isset($_POST['idcita'])){
+	require '../DAO/citaDAO.php';
+    $conf= new config();
+    $link= $conf->con();
+    $citaDAO= new citaDAO();
 
 	$id_cita=$_POST['idcita'];
 	$fecha=$_POST['fecha'];
@@ -13,7 +16,7 @@ if(isset($_POST['idconsultorio'])){
 
 	$citaDAO = new citaDAO();
 	if($link->affected_rows>0){
-	    $resul=$pacDAO->update($id_cita,$fecha,$hora,$idmedico,$idpaciente,$idconsultorio,$estado);
+	    $resul=$citaDAO->update($id_cita,$fecha,$hora,$idmedico,$idpaciente,$idconsultorio,$estado);
 		echo $resul;
 	}
 } 

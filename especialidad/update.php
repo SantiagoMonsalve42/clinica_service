@@ -1,14 +1,19 @@
 <?php
-  
-if(isset($_POST['id']) && isset($_POST['name']) ){
-    
-    require '../DAO/especialidadDAO.php';
 
-    $id=$_POST['id'];
-    $name=$_POST['name'];
-    $espe = new especialidadDAO();
-    $resul=$espe->updateName($id,$name);
-    echo $resul;
-} 
+if(isset($_POST['idespecalidad'])){
+    require '../DAO/especialidadDAO.php';
+    $conf= new config();
+    $link= $conf->con();
+    $espeDAO= new especialidadDAO();
+
+    $id_especialidad=$_POST['idespecalidad'];
+    $nombre=$_POST['nombre'];
+
+    $citaDAO = new citaDAO();
+    if($link->affected_rows>0){
+        $resul=$citaDAO->update($id_especialidad,$nombre);
+        echo $resul;
+    }
+}
 
 ?>

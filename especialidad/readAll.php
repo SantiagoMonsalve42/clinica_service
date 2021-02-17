@@ -1,11 +1,23 @@
 <?php
+include ('../config.php');
+include ('../DAO/especialidadDAO.php');
+$conf= new config();
+$link= $conf->con();
+$espeDAO= new especialidadDAO();
 
-if(isset($_GET['readall'])){
-    require '../DAO/especialidadDAO.php';
-    $id=$_GET['readall'];
-    $espe = new especialidadDAO();
-    $resul=$espe->readall($id);
-    echo $resul;
-} 
+
+$sql=$espeDAO->
+readAll();
+
+if(mysqli_query($link, $sql)){
+    // echo "Insercion correcta";
+    echo($sql);
+}
+else{
+    echo "Fallo al mostrar",mysqli_error($link);
+    mysqli_close($link);
+}
+
+
 
 ?>

@@ -67,7 +67,7 @@ class medicoDAO extends config{
        return $resul;
     }
 
-    public function update($id,$name,$lastname,$mail,$prof,$ask,$ans,$date){//update
+    public function update($idmedico,$name,$lastname,$mail,$prof,$ask,$ans,$date){//update
         $sql="update medico set nombre='$name', apellido='$lastname',correo='$mail',tarjetaprofesional='$prof',pregunta='$ask',respuesta='$ans',fecha_nacimiento='$date'
         where idmedico='$idmedico'";
         $resul=mysqli_query($this->con(),$sql);

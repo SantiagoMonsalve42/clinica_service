@@ -2,6 +2,9 @@
 
 if(isset($_POST['idpaciente'])){
 	require '../DAO/oacienteDAO.php';
+    $conf = new config();
+    $link = $conf->con();
+    $pacDAO = new pacienteDAO();
 
 	$id=$_POST['idpaciente'];
 	$nombre=$_POST['nombre'];
