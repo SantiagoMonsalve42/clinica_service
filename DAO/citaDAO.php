@@ -59,6 +59,13 @@ class citaDAO extends config{
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     } 
+    
+    public function ver_citas() {
+        $sql = "select c.idcita, c.fecha, c.hora, cn.nombre, p.nombre, p.apellido from cita c, consultorio cn, paciente p, medico m
+                where m.idmedico = c.medico_idmedico and p.idpaciente = c.paciente_idpaciente and cn.idconsultorio = c.consultorio_idconsultorio";
+        $resul=mysqli_query($this->con(),$sql);
+        return $resul;
+    }
 
 }
 ?>

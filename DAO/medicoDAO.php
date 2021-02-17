@@ -73,6 +73,8 @@ class medicoDAO extends config{
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     } 
+    
+    
 
 }
 ?>
