@@ -48,10 +48,10 @@ class pacienteDAO extends config{
     }
 
     public function insert($name,$lastname,$mail,$pass,$cc,$tel,$ask,$ans,$date){ //create
-
+        $pass=md5($pass);
         $est=1;
         $sql="insert into paciente(nombre,apellido,correo,clave,cedula,telefono,pregunta,respuesta,fecha_nacimiento,estado)values
-        ('$name','$lastname','$mail',md5('$pass'),'$cc','$tel','$ask','$ans',$date,0)";
+        ('$name','$lastname','$mail','$pass','$cc','$tel','$ask','$ans','$date','0')";
         $resul=mysqli_query($this->con(),$sql);
         if($resul){
             return true;
@@ -71,7 +71,7 @@ class pacienteDAO extends config{
     
     public function updatePass($id,$pass){//update password
         $sql="update paciente set clave='$pass'
-        where idpaciente='$id'";
+        where idpaciente='$id' or correo ='$id'";
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     }

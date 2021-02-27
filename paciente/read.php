@@ -1,9 +1,9 @@
 <?php
 
-if(isset($_POST['idpaciente'])){
+if(isset($_GET['idpaciente'])){
     require '../DAO/pacienteDAO.php';
 
-    $id=$_POST['idpaciente'];
+    $id=$_GET['idpaciente'];
     $obj = new pacienteDAO();
     $resul=$obj->readOneById($id);
     echo $resul;

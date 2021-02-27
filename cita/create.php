@@ -12,15 +12,14 @@ $idpaciente=$_POST['paciente_idpaciente'];
 $idconsultorio=$_POST['consultorio_idconsultorio'];
 $estado=$_POST['estado'];
 
-$sql=$citaDAO->
-insert($fecha, $hora, $idmedico, $idpaciente, $idconsultorio, $estado);
+$sql=$citaDAO->insert($fecha, $hora, $idmedico, $idpaciente, $idconsultorio, $estado);
 
-    if(mysqli_query($link, $sql)){
+    if(mysqli_query($link,$sql)){
         // echo "Insercion correcta";
-        echo("Registro correcto");
+        echo("1");
     }
     else{
-        echo "Insercion incorrecta",mysqli_error($link);
+        echo "0";
         mysqli_close($link);
     }
     
