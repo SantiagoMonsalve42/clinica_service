@@ -6,10 +6,9 @@ $link= $conf->con();
 $medDAO= new medicoDAO();
 
 
-$sql=$medDAO->
-readAll();
+$sql=$medDAO->readAll();
 
-  if(mysqli_query($link, $sql)){
+  if(mysqli_query($link,$sql)){
        // echo "Insercion correcta";
         echo($sql);
     }
