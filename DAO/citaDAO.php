@@ -4,7 +4,7 @@ require_once("../config.php");
 class citaDAO extends config{
     private $admons;
     public function __construct(){
-        $this->admons=array();
+        $this->admons['cita']=array();
     }
 
     public function readall(){  //read
@@ -18,7 +18,7 @@ class citaDAO extends config{
     }
     public function readOneById($id){
        
-     $sql="select p.nombre,p.apellido,c.fecha,c.hora,cc.nombre from 
+     $sql="select c.idcita,p.nombre,p.apellido,c.fecha,c.hora,cc.nombre as consult from 
      paciente p,cita c,consultorio cc where p.idpaciente = c.paciente_idpaciente 
      and cc.idconsultorio = c.consultorio_idconsultorio and 
      c.medico_idmedico=( SELECT idmedico FROM medico WHERE correo ='$id') 
@@ -27,8 +27,15 @@ class citaDAO extends config{
      $resul=mysqli_query($link,$sql);
 
             if($link->affected_rows >0){
-                while($row=$resul->fetch_assoc()){
-                    $this->admons[]=$row;
+                while($row=$resul->fetch_array()){
+                    array_push($this->admons['cita'],array(
+                        'idcita'=> $row['idcita'],
+                        'nombre'=> $row['nombre'],
+                        'apellido'=> $row['apellido'],
+                        'fecha'=> $row['fecha'],
+                        'hora'=> $row['hora'],
+                        'consult'=> $row['consult']
+                    ));
                 }
                 return json_encode( $this->admons);
             }
