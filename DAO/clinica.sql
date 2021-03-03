@@ -1,31 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2020 a las 00:23:28
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `clinica`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `administrador`
---
 
 CREATE TABLE `administrador` (
   `idadministrador` int(11) NOT NULL,
@@ -147,7 +120,8 @@ CREATE TABLE `paciente` (
 --
 
 INSERT INTO `paciente` (`idpaciente`, `nombre`, `apellido`, `fecha_nacimiento`, `correo`, `clave`, `cedula`, `telefono`, `foto`, `pregunta`, `respuesta`, `estado`) VALUES
-(1, 'Cristhian', 'Sierra', '1999-12-01', '123@123.com', '202cb962ac59075b964b07152d234b70', '123456', '3200000', NULL, 'Quien es usted?', 'Soy estudiante', 1);
+(1, 'Cristhian', 'Sierra', '1999-12-01', '123@123.com', '202cb962ac59075b964b07152d234b70', '123456', '3200000', NULL, 'Quien es usted?', 'Soy estudiante', 1),
+(18, 'Cristhian', 'Caicedo', '0000-00-00', '111@111.com', '698d51a19d8a121ce581499d7b701668', '10000', '222', NULL, 'de donde es?', 'boyaca', 0);
 
 --
 -- Índices para tablas volcadas
@@ -244,7 +218,7 @@ ALTER TABLE `medico`
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `idpaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idpaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas

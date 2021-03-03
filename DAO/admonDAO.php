@@ -73,6 +73,20 @@ class admonDAO extends config{
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     }
+
+     public function existeCorreo($mail){
+        return "SELECT idadministrador
+        FROM administrador
+        where correo = '" . $mail . "' and correo= ALL(
+        SELECT idpaciente
+        FROM paciente
+        where correo = ALL(
+        SELECT idmedico
+        FROM medico
+        where correo='". $mail ."'
+
+    )); ";;
+}
 }
 
 ?>

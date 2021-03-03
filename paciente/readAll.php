@@ -6,11 +6,10 @@ $link= $conf->con();
 $pacDAO= new pacienteDAO();
 
 
-$sql=$pacDAO->
-readAll();
+$sql=$pacDAO->readAll();
 
   if(mysqli_query($link, $sql)){
-       // echo "Insercion correcta";
+       // echo "Correcta";
         echo($sql);
     }
     else{

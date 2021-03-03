@@ -4,8 +4,7 @@ include ('../DAO/pacienteDAO.php');
 $conf= new config();
 $link= $conf->con();
 $pacDAO= new pacienteDAO();
-if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['correo']) && isset($_POST['clave']) && isset($_POST['cc']) && isset($_POST['telefono']) && isset($_POST['pregunta'])
- && isset($_POST['respuesta']) && isset($_POST['fecha_nacimiento'])){
+if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['correo']) && isset($_POST['clave']) && isset($_POST['cc']) && isset($_POST['telefono']) && isset($_POST['pregunta']) && isset($_POST['respuesta']) && isset($_POST['fecha_nacimiento'])){
 $nombre=$_POST['nombre'];
 $apellido=$_POST['apellido'];
 $correo=$_POST['correo'];
@@ -29,7 +28,7 @@ insert($nombre,$apellido,$correo,$clave,$cc,$telefono,$pregunta,$respuesta,$fech
     }
 
 }else{
-    echo "falta algo pirobo";
+    echo "Error";
 }
 
 ?>

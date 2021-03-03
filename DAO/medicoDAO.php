@@ -76,5 +76,19 @@ class medicoDAO extends config{
     
     
 
+    public function existeCorreo($mail){
+        return "SELECT idmedico
+        FROM medico
+        where correo = '" . $mail . "' and correo= ALL(
+        SELECT idpaciente
+        FROM paciente
+        where correo = ALL(
+        SELECT idadministrador
+        FROM administrador
+        where correo='". $mail ."'
+
+    )); ";;
+}
+
 }
 ?>

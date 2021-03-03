@@ -71,14 +71,14 @@ class pacienteDAO extends config{
     
     public function updatePass($id,$pass){//update password
         $sql="update paciente set clave='$pass'
-        where idpaciente='$id' or correo ='$id'";
+        where idpaciente='$id'";
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     }
 
-   public function update($id,$name,$lastname,$mail,$cc,$tel,$ask,$ans,$date){//update
+   public function update($idpaciente,$name,$lastname,$mail,$cc,$tel,$ask,$ans,$date){//update
         $sql="update paciente set nombre='$name', apellido='$lastname',correo='$mail',cedula='$cc',telefono='$tel',pregunta='$ask',respuesta='$ans',fecha_nacimiento='$date'
-        where idpaciente='$id'";
+        where idpaciente='$idpaciente'";
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     } 

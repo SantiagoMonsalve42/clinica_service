@@ -1,12 +1,12 @@
 <?php
 
 if(isset($_POST['idpaciente'])){
-	require '../DAO/oacienteDAO.php';
+	require '../DAO/pacienteDAO.php';
     $conf = new config();
     $link = $conf->con();
     $pacDAO = new pacienteDAO();
 
-	$id=$_POST['idpaciente'];
+$id=$_POST['idpaciente'];
 	$nombre=$_POST['nombre'];
 	$apellido=$_POST['apellido'];
 	$correo=$_POST['correo'];
@@ -21,6 +21,9 @@ if(isset($_POST['idpaciente'])){
 		$resul=$pacDAO->update($id,$nombre,$apellido,$correo,$cc,$telefono,$pregunta,$respuesta,$fecha_nac);
 		echo $resul;
 	}
-} 
+}
+else{
+    echo "A la espera de un id";
+}
 
 ?>
