@@ -33,10 +33,10 @@ class historiaDAO extends config{
 
     }
 
-    public function insert($peso,$altura,$motConsulta,$enfermedades,$alergias,$medicamentos,$antPersonales,$antFamiliares){ //create
+    public function insert($peso,$altura,$motConsulta,$enfermedades,$alergias,$medicamentos,$antPersonales,$antFamiliares,$idpaciente){ //create
         $sql="insert into historia_clinica(peso,altura,motivo_consulta,enfermedades,alergias,medicamentos,antecedentes_personales,
-                                            antecedentes_familiares)values
-        ('$peso','$altura','$motConsulta','$enfermedades','$alergias','$medicamentos',$antPersonales,'$antFamiliares')";
+                                            antecedentes_familiares,paciente_idpaciente)values
+        ('$peso','$altura','$motConsulta','$enfermedades','$alergias','$medicamentos','$antPersonales','$antFamiliares','$idpaciente')";
         $resul=mysqli_query($this->con(),$sql);
         if($resul){
             return true;

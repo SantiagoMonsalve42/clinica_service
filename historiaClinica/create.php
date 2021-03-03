@@ -1,8 +1,12 @@
 <?php
-include('../config.php');
+
+if(isset($_POST['peso']) && isset($_POST['altura']) && isset($_POST['motivo_consulta']) && 
+isset($_POST['enfermedades']) && isset($_POST['alergias']) && isset($_POST['medicamentos']) && 
+isset($_POST['antecedentes_personales']) && isset($_POST['antecedentes_familiares']) &&
+isset($_POST['paciente_idpaciente'])){
+    
 include('../DAO/historiaDAO.php');
-$conf = new config();
-$link = $conf->con();
+
 $hisDAO = new historiaDAO();
 
 $peso = $_POST['peso'];
@@ -13,16 +17,15 @@ $alergias = $_POST['alergias'];
 $medicamentos = $_POST['medicamentos'];
 $antPersonales = $_POST['antecedentes_personales'];
 $antFamiliares = $_POST['antecedentes_familiares'];
+$idpaciente = $_POST['paciente_idpaciente'];
 
-$sql = $hisDAO->
-insert($peso, $altura, $motConsulta, $enfermedades, $alergias, $medicamentos, $antPersonales, $antFamiliares);
-
-if (mysqli_query($link, $sql)) {
-    // echo "Insercion correcta";
-    echo("Registro correcto");
-} else {
-    echo "Insercion incorrecta", mysqli_error($link);
-    mysqli_close($link);
+$sql = $hisDAO->insert($peso, $altura, $motConsulta, $enfermedades, $alergias, $medicamentos, $antPersonales, $antFamiliares,$idpaciente);
+if($sql){
+    echo 1;
+}else{
+    echo 0;
 }
 
+
+}
 ?>

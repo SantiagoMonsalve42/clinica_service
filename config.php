@@ -3,9 +3,9 @@
 class config{
     function con(){
         $host="localhost";
-        $user="id16033246_cristhian";
-        $pass="Componentes#123456";
-        $bdname="id16033246_clinica";
+        $user="root";
+        $pass="123456";
+        $bdname="clinica";
         $RUTA="https://clinica-service.000webhostapp.com/";
         $link=mysqli_connect($host,$user,$pass)
         or die("Error 1 del tipo: ".mysqli_error($link));

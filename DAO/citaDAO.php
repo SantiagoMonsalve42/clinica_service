@@ -22,7 +22,8 @@ class citaDAO extends config{
      paciente p,cita c,consultorio cc where p.idpaciente = c.paciente_idpaciente 
      and cc.idconsultorio = c.consultorio_idconsultorio and 
      c.medico_idmedico=( SELECT idmedico FROM medico WHERE correo ='$id') 
-     and c.fecha = CURDATE() order by c.fecha,c.hora";
+     and c.fecha = CURDATE() and c.hora >= DATE_FORMAT(NOW( ), '%H:%i:%S') 
+     and c.estado=1 order by c.fecha,c.hora";
      $link=$this->con();       
      $resul=mysqli_query($link,$sql);
 
@@ -41,9 +42,36 @@ class citaDAO extends config{
             }
             
     }
+    public function readOneByMailAndHour($id,$hour){
+       
+        $sql="select c.idcita,p.idpaciente,p.nombre,p.apellido,c.fecha,c.hora,cc.nombre as consult from 
+        paciente p,cita c,consultorio cc where p.idpaciente = c.paciente_idpaciente 
+        and cc.idconsultorio = c.consultorio_idconsultorio and 
+        c.medico_idmedico=( SELECT idmedico FROM medico WHERE correo ='$id') 
+       and c.hora = '$hour'";
+        $link=$this->con();       
+        $resul=mysqli_query($link,$sql);
+   
+               if($link->affected_rows >0){
+                   while($row=$resul->fetch_array()){
+                       array_push($this->admons['cita'],array(
+                           'idpaciente'=> $row['idpaciente'],
+                           'nombre'=> $row['nombre'],
+                           'apellido'=> $row['apellido'],
+                           'fecha'=> $row['fecha'],
+                           'hora'=> $row['hora'],
+                           'consult'=> $row['consult'],
+                           'idcita'=> $row['idcita']
+                       ));
+                   }
+                   return json_encode( $this->admons);
+               }
+               
+       }
+
 
     public function insert($date,$time,$idmedico,$idpaciente,$idconsultorio,$estado){ //create
-        $sql="insert into medico(fecha,hora,medico_idmedico,paciente_idpaciente,consultorio_idconsultorio,estado)values
+        $sql="insert into cita(fecha,hora,medico_idmedico,paciente_idpaciente,consultorio_idconsultorio,estado)values
         ('$date','$time','$idmedico','$idpaciente','$idconsultorio','$estado')";
         $resul=mysqli_query($this->con(),$sql);
         if($resul){
