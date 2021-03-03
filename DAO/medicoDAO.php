@@ -4,7 +4,7 @@ require_once("../config.php");
 class medicoDAO extends config{
     private $admons;
     public function __construct(){
-        $this->admons=array();
+        $this->admons['medico']=array();
     }
 
     public function readall(){  //read
@@ -18,18 +18,23 @@ class medicoDAO extends config{
     }
     public function readOneById($id){
        
-     $sql="select * from medico where idmedico=$id";
+     $sql="select * from medico where idmedico='$id' or correo ='$id'";
      $link=$this->con();       
      $resul=mysqli_query($link,$sql);
-
-            if($link->affected_rows >0){
-                while($row=$resul->fetch_assoc()){
-                    $array=$row;
-                }
-                return json_encode($array);
-            }
-            else
-            return "Falla";
+     if($link->affected_rows >0){
+        while($row=$resul->fetch_array()){
+            array_push($this->admons['medico'],array(
+                'idmedico'=> $row['idmedico'],
+                'nombre'=> $row['nombre'],
+                'apellido'=> $row['apellido'],
+                'fecha_nacimiento'=> $row['fecha_nacimiento'],
+                'correo'=> $row['correo'],
+                'tarjetaprofesional'=> $row['tarjetaprofesional'],
+                'pregunta'=> $row['pregunta']
+            ));
+        }
+        return json_encode( $this->admons);
+    }
             
     }
     public function getMail($mail){

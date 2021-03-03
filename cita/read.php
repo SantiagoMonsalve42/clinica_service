@@ -1,11 +1,11 @@
 <?php
 
-if(isset($_POST['idcita'])){
+if(isset($_GET['idmedico'])){
     require '../DAO/citaDAO.php';
 
-    $id_cita=$_POST['idcita'];
+    $id_medico=$_GET['idmedico'];
     $obj = new citaDAO();
-    $resul=$obj->readOneById($id_cita);
+    $resul=$obj->readOneById($id_medico);
     echo $resul;
 } 
 
