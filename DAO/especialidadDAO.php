@@ -4,17 +4,22 @@ require_once("../config.php");
 class especialidadDAO extends config{
     private $admons;
     public function __construct(){
-        $this->admons=array();
+        $this->admons['especialidad']=array();
     }
 
     public function readall(){  //read
         $sql="select * from especialidad";
         $link=$this->con(); 
         $resul=mysqli_query($link,$sql);
-        while($row=$resul->fetch_assoc()){
-            $this->admons[]=$row;
+        if ($link->affected_rows > 0){
+            while($row=$resul->fetch_array()){
+                array_push($this->admons['especialidad'], array(
+                   'idEspecialidad' => $row['idespecialidad'],
+                    'nombre' => $row['nombre']
+                ));
+            }
+            return json_encode($this->admons);
         }
-        return json_encode( $this->admons);
     }
     public function readallArray(){  //read
         $sql="select * from especialidad";

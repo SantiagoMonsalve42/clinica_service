@@ -6,8 +6,7 @@ $link= $conf->con();
 $espeDAO= new especialidadDAO();
 
 
-$sql=$espeDAO->
-readAll();
+$sql = $espeDAO-> readAll();
 
 if(mysqli_query($link, $sql)){
     // echo "Insercion correcta";

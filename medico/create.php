@@ -7,15 +7,15 @@ $medDAO= new medicoDAO();
 
 $nombre=$_POST['nombre'];
 $apellido=$_POST['apellido'];
+$fecha_nac=$_POST['fecha_nacimiento'];
 $correo=$_POST['correo'];
 $clave=$_POST['clave'];
 $tarjeta=$_POST['tarjetaprofesional'];
+$idEspecialidad=$_POST['especialidad_idespecialidad'];
 $pregunta=$_POST['pregunta'];
 $respuesta=$_POST['respuesta'];
-$fecha_nac=$_POST['fecha_nacimiento'];
 
-$sql=$medDAO->
-insert($nombre,$apellido,$correo,$clave,$tarjeta,$pregunta,$respuesta,$fecha_nac);
+$sql=$medDAO->insert($nombre,$apellido,$fecha_nac,$correo,$clave,$tarjeta,$pregunta,$respuesta);
 
   if(mysqli_query($link, $sql)){
        // echo "Insercion correcta";

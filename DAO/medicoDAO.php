@@ -16,6 +16,14 @@ class medicoDAO extends config{
         }
         return json_encode( $this->admons);
     }
+    public function consultarTotalRegistros(){
+        $sql="select count(idmedico)
+                from medico";
+        $link=$this->con();
+        $resul=mysqli_query($link,$sql);
+        $reg = $resul->num_rows;
+        return $reg;
+    }
     public function readOneById($id){
        
      $sql="select * from medico where idmedico='$id' or correo ='$id'";
@@ -46,8 +54,9 @@ class medicoDAO extends config{
     }
 
     public function insert($name,$lastname,$date,$mail,$pass,$prof,$idespecialidad,$ask,$ans){ //create
-        $sql="insert into medico(nombre,apellido,fecha_nacimiento,correo,clave,tarjetaprofesional,especialidad_idespecialidad,pregunta,respuesta)values
-        ('$name','$lastname','$date','$mail','$pass','$prof',$idespecialidad,'$ask','$ans')";
+        $pass=md5($pass);
+        $sql="insert into medico(nombre,apellido,fecha_nacimiento,correo,clave,tarjetaprofesional,especialidad_idespecialidad,pregunta,respuesta, estado)values
+        ('$name','$lastname','$date','$mail','$pass','$prof',$idespecialidad,'$ask','$ans', '0')";
         $resul=mysqli_query($this->con(),$sql);
         if($resul){
             return true;

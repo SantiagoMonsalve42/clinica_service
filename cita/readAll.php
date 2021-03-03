@@ -6,8 +6,7 @@ $link= $conf->con();
 $citaDAO= new citaDAO();
 
 
-$sql=$citaDAO->
-readAll();
+$sql = $citaDAO -> readAll();
 
   if(mysqli_query($link, $sql)){
        // echo "Insercion correcta";
