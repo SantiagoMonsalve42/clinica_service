@@ -22,7 +22,7 @@ class citaDAO extends config{
      paciente p,cita c,consultorio cc where p.idpaciente = c.paciente_idpaciente 
      and cc.idconsultorio = c.consultorio_idconsultorio and 
      c.medico_idmedico=( SELECT idmedico FROM medico WHERE correo ='$id') 
-     and c.fecha >= CURDATE() order by c.fecha,c.hora";
+     and c.fecha = CURDATE() order by c.fecha,c.hora";
      $link=$this->con();       
      $resul=mysqli_query($link,$sql);
 
