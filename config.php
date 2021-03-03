@@ -4,7 +4,7 @@ class config{
     function con(){
         $host="localhost";
         $user="root";
-        $pass="123456";
+        $pass="";
         $bdname="clinica";
         $RUTA="http://localhost.com/";
         $link=mysqli_connect($host,$user,$pass)
