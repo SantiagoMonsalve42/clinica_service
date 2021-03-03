@@ -76,7 +76,7 @@ class medicoDAO extends config{
     
     public function updatePass($id,$pass){//update
         $sql="update medico set clave='$pass'
-        where idmedico='$id'";
+        where idmedico='$id' or correo = '$id'";
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
     }
@@ -102,7 +102,29 @@ class medicoDAO extends config{
         where correo='". $mail ."'
 
     )); ";;
-}
+     }
+    public function verCitasByMail($mail){
+        $sql="select c.idcita,c.hora, c.fecha, cc.nombre,c.estado 
+        from consultorio cc,cita c
+        where cc.idconsultorio = c.consultorio_idconsultorio 
+        and c.fecha <= NOW() 
+        and c.estado = 0 
+        and c.medico_idmedico = (select idmedico from medico where correo ='$mail')";
+        $link=$this->con();       
+        $resul=mysqli_query($link,$sql);
+     if($link->affected_rows >0){
+        while($row=$resul->fetch_array()){
+            array_push($this->admons['medico'],array(
+                'idcita'=> $row['idcita'],
+                'hora'=> $row['hora'],
+                'fecha'=> $row['fecha'],
+                'nombre'=> $row['nombre'],
+                'estado'=> $row['estado']
+            ));
+        }
+        return json_encode( $this->admons);
+    }
+    }
 
 }
 ?>
