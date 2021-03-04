@@ -5,6 +5,7 @@ class pacienteDAO extends config{
     private $admons;
     public function __construct(){
         $this->pacientes=array();
+        $this->admons=array();
     }
 
     public function readall(){  //read
@@ -81,6 +82,18 @@ class pacienteDAO extends config{
         where idpaciente='$idpaciente'";
         $resul=mysqli_query($this->con(),$sql);
        return $resul;
-    } 
+    }
+    
+    public function getName($id) {
+        $sql="SELECT nombre, apellido, correo from paciente where correo = '$id'";
+        $link=$this->con();
+        $resul=mysqli_query($link,$sql);
+        if($link->affected_rows > 0){
+            while($row=$resul->fetch_array()){
+                array_push($this -> admons, array($row[0], $row[1],$row[2]));
+            }
+            return $this -> admons;
+        }
+    }
 }
 ?>
