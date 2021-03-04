@@ -3,8 +3,10 @@
 require_once("../config.php");
 class medicoDAO extends config{
     private $admons;
+    private $data;
     public function __construct(){
         $this->admons['medico']=array();
+        $this->data['datos']=array();
     }
 
     public function readall(){  //read
@@ -21,8 +23,22 @@ class medicoDAO extends config{
                 from medico";
         $link=$this->con();
         $resul=mysqli_query($link,$sql);
-        $reg = $resul->num_rows;
-        return $reg;
+        $reg = $resul->fetch_row();
+        return $reg[0];
+    }
+    public function consultarTotalRegistrosM($id){
+        $sql="SELECT idespecialidad FROM especialidad WHERE nombre = '$id' UNION 
+            SELECT COUNT(idmedico) as cantidad FROM medico WHERE especialidad_idespecialidad = (SELECT idespecialidad from especialidad where nombre = '$id')";
+        $link=$this->con();
+        $resul=mysqli_query($link,$sql);
+        if($link->affected_rows >0){
+            while($row=$resul->fetch_array()){
+                array_push($this->data['datos'],array(
+                    'idespecialidad'=> $row['idespecialidad']
+                ));
+            }
+            return json_encode( $this->data);
+        }
     }
     public function readOneById($id){
        
@@ -55,8 +71,8 @@ class medicoDAO extends config{
 
     public function insert($name,$lastname,$date,$mail,$pass,$prof,$idespecialidad,$ask,$ans){ //create
         $pass=md5($pass);
-        $sql="insert into medico(nombre,apellido,fecha_nacimiento,correo,clave,tarjetaprofesional,especialidad_idespecialidad,pregunta,respuesta, estado)values
-        ('$name','$lastname','$date','$mail','$pass','$prof',$idespecialidad,'$ask','$ans', '0')";
+        $sql="insert into medico(nombre,apellido,fecha_nacimiento,correo,clave,tarjetaprofesional,especialidad_idespecialidad,pregunta,respuesta, estado)
+        values ('$name','$lastname','$date','$mail','$pass','$prof','$idespecialidad','$ask','$ans', '1')";
         $resul=mysqli_query($this->con(),$sql);
         if($resul){
             return true;

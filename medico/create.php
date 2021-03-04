@@ -15,7 +15,7 @@ $idEspecialidad=$_POST['especialidad_idespecialidad'];
 $pregunta=$_POST['pregunta'];
 $respuesta=$_POST['respuesta'];
 
-$sql=$medDAO->insert($nombre,$apellido,$fecha_nac,$correo,$clave,$tarjeta,$pregunta,$respuesta);
+$sql=$medDAO->insert($nombre,$apellido,$fecha_nac,$correo,$clave,$tarjeta,$idEspecialidad,$pregunta,$respuesta);
 
   if(mysqli_query($link, $sql)){
        // echo "Insercion correcta";

@@ -21,6 +21,7 @@ class especialidadDAO extends config{
             return json_encode($this->admons);
         }
     }
+    
     public function readallArray(){  //read
         $sql="select * from especialidad";
         $link=$this->con(); 
